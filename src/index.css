@@ -1,0 +1,20 @@
+/* ----------------
+    RESET
+------------------*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*-------------
+    HEADER
+-------------*/
+header {
+  background-color: #e9edc9;
+  height: 150px;
+}
+
+header img {
+  height: 150px;
+}
