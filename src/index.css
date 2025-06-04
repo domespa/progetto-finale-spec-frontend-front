@@ -11,10 +11,50 @@
     HEADER
 -------------*/
 header {
-  background-color: #e9edc9;
+  background-color: #1a1a2e;
   height: 150px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }
 
 header img {
   height: 150px;
+}
+
+/*-------------
+    MAIN
+-------------*/
+
+main {
+  background-color: #111827;
+}
+
+.card {
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card a {
+  text-decoration: none;
+}
+/*-------------
+    BUTTONS
+-------------*/
+.btn-primary,
+.btn-secondary {
+  background-color: #16a085 !important;
+  border-color: #16a085 !important;
+}
+
+.btn-primary:hover,
+.btn-secondary {
+  background-color: #138d75 !important;
+  border-color: #138d75 !important;
+}
+/*-------------
+    FOOTER
+-------------*/
+footer {
+  background-color: #0f0f0f;
 }
