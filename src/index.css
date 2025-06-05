@@ -75,6 +75,68 @@ main {
   border-radius: 10px;
   border: none;
 }
+
+.sect-compare {
+  min-height: 57.1vh;
+}
+.search-compare {
+  padding-top: 10px;
+  text-align: center;
+  position: relative;
+}
+.comp-container {
+  padding-top: 10px;
+  text-align: center;
+  color: white;
+  /* margin: auto; */
+}
+/* .comp-container button {
+  padding: 0;
+} */
+
+.comp-card {
+  border: 1px solid white;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding: 6px;
+  margin: 30px auto;
+}
+
+.comp-grid img {
+  height: 200px;
+  margin-bottom: 20px;
+}
+.comp-grid {
+  gap: 30px;
+}
+
+.searchlist {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: black;
+}
+
+.searchlist-item {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 1px solid #000000;
+  background-color: white;
+}
+
 /*-------------
     PREFERITI
 -------------*/
@@ -124,4 +186,28 @@ main {
 -------------*/
 footer {
   background-color: #0f0f0f;
+  height: 200px;
+}
+.foot-cont {
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+.foot-cont img {
+  height: 200px;
+}
+
+.newsletter {
+  padding-top: 16px;
+}
+
+.newsletter button {
+  margin-top: 6px;
+}
+
+.reserved {
+  background-color: #0f0f0f;
+  color: white;
+  padding-left: 50px;
+  display: block;
 }

@@ -3,12 +3,12 @@ import { Toast } from "primereact/toast";
 import { useRef } from "react";
 
 export default function Card({ id, title, image, category, onAddToWish }) {
-  const toast = useRef(null);
+  const toastBL = useRef(null);
 
   const handleAddToWish = (e) => {
     e.preventDefault();
     onAddToWish({ id, title, image, category });
-    toast.current.show({
+    toastBL.current.show({
       severity: "success",
       detail: `Lista preferiti aggiornata`,
       life: 3000,
@@ -37,7 +37,7 @@ export default function Card({ id, title, image, category, onAddToWish }) {
           </p>
         </div>
       </Link>
-      <Toast ref={toast} />
+      <Toast ref={toastBL} position="bottom-left" />
 
       <div className="d-flex justify-content-end m-2">
         <button

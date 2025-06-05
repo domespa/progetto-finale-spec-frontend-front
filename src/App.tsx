@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import Compare from "./pages/Compare";
 
 export default function App() {
   return (
@@ -18,11 +19,8 @@ export default function App() {
           <Route element={<DefaultLayout />}>
             <Route index path="/" element={<HomePage />}></Route>
             <Route index path="/products" element={<Products />}></Route>
-            <Route
-              index
-              path="/products/:id"
-              element={<ProductDetail />}
-            ></Route>
+            <Route index path="/products/:id" element={<ProductDetail />} />
+            <Route index path="compare" element={<Compare />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
