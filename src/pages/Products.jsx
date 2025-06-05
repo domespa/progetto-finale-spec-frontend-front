@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useMemo } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import Card from "../components/Card";
 import Searchbar from "../components/Searchbar.jsx";
@@ -18,17 +18,21 @@ export default function Products() {
     }
   };
 
-  const filteredProducts = products
-    .filter(
-      (p) =>
-        p.title.toLowerCase().includes(search.toLowerCase()) ||
-        p.category.toLowerCase().includes(search.toLowerCase())
-    )
-    .sort((a, b) => {
-      if (a[sortBy] < b[sortBy]) return -1 * sortOrder;
-      if (a[sortBy] > b[sortBy]) return 1 * sortOrder;
-      return 0;
+  const sortedProduct = useMemo(() => {
+    return [...products].sort((a, b) => {
+      let comparison;
+      if (sortBy === "title") {
+        comparison = a.title.localeCompare(b.title);
+      }
+      return comparison * sortOrder;
     });
+  }, [products, sortBy, sortOrder]);
+
+  const filteredProducts = sortedProduct.filter(
+    (p) =>
+      p.title.toLowerCase().includes(search.toLowerCase()) ||
+      p.category.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="container pt-5 pb-5">
