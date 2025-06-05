@@ -7,6 +7,11 @@
   padding: 0;
 }
 
+html,
+body {
+  overflow: auto;
+  scrollbar-width: none;
+}
 /*-------------
     HEADER
 -------------*/
@@ -30,6 +35,26 @@ main {
   background-color: #111827;
 }
 
+.hero {
+  background-image: url("/hero.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 80vh;
+  width: 100%;
+  align-content: center;
+  color: #1a1a2e;
+}
+
+.hero-content {
+  background-color: white;
+  height: 30vh;
+  width: 150vh;
+  margin: auto;
+  padding: 30px;
+  border-radius: 25px;
+}
+
 .card {
   width: 250px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
@@ -38,6 +63,48 @@ main {
 .card a {
   text-decoration: none;
 }
+
+.order-container {
+  display: flex;
+  justify-content: end;
+}
+
+.order-container button {
+  padding: 4px 8px;
+  margin-right: 14px;
+  border-radius: 10px;
+  border: none;
+}
+/*-------------
+    PREFERITI
+-------------*/
+
+.pref-container {
+  position: fixed;
+  min-width: 300px;
+  max-width: auto;
+  height: 50vh;
+  top: 40%;
+  right: 0;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 99999;
+  overflow-y: auto;
+  border-radius: 15px 0 0 15px;
+  background-color: #1a1a2e;
+  color: white;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+}
+
+.pref-container li {
+  margin-bottom: 6px;
+  list-style: none;
+}
+.pref-container.open {
+  transform: translateX(0);
+}
+
 /*-------------
     BUTTONS
 -------------*/

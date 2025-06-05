@@ -3,7 +3,7 @@ const { VITE_API_URL } = import.meta.env;
 
 export const GlobalContext = createContext();
 
-const initialWishlist = [];
+const initialWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
 function wishlistReducer(state, action) {
   switch (action.type) {
@@ -27,6 +27,11 @@ export function GlobalProvider({ children }) {
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -53,7 +58,18 @@ export function GlobalProvider({ children }) {
 
   return (
     <GlobalContext.Provider
-      value={{ products, setProducts, addToWish, removeFromWish, resetWish }}
+      value={{
+        products,
+        setProducts,
+        wishlist,
+        loading,
+        error,
+        addToWish,
+        removeFromWish,
+        resetWish,
+        show,
+        setShow,
+      }}
     >
       {children}
     </GlobalContext.Provider>
