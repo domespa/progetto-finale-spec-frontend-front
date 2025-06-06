@@ -1,9 +1,13 @@
 import { useParams, useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 const { VITE_API_URL } = import.meta.env;
 import ReactDOM from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { handleAddToWish } from "../utils/handleAddToWish";
+import { Toast } from "primereact/toast";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 export default function ProductDetail() {
   const [product, setProduct] = useState(null);
@@ -11,6 +15,13 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const navigate = useNavigate();
+  const toastBL = useRef(null);
+  const { addToWish } = useContext(GlobalContext);
+
+  const addToWishHandler = handleAddToWish({
+    onAddToWish: addToWish,
+    toastRef: toastBL,
+  });
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -111,7 +122,16 @@ export default function ProductDetail() {
           </ul>
         </div>
       </div>
-      <div className="d-flex justify-content-end mt-3">
+      <div className="d-flex justify-content-end mt-3 gap-3">
+        <button
+          label="Success"
+          severity="success"
+          className="btn btn-secondary mb-3"
+          onClick={(e) => addToWishHandler(e, product)}
+        >
+          Aggiungi ai preferiti
+        </button>
+        <Toast ref={toastBL} position="bottom-left" />
         <button className="btn btn-secondary mb-3" onClick={() => navigate(-1)}>
           <FontAwesomeIcon icon={faArrowLeft} /> Torna indietro
         </button>

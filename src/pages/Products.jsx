@@ -1,13 +1,21 @@
-import { useContext, useState, useMemo } from "react";
+import { useContext, useState, useMemo, useRef } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import Card from "../components/Card";
 import Searchbar from "../components/Searchbar.jsx";
+import { handleAddToWish } from "../utils/handleAddToWish.js";
+import { Toast } from "primereact/toast";
 
 export default function Products() {
   const { products, addToWish } = useContext(GlobalContext);
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState(1);
+  const toastBL = useRef(null);
+
+  const addToWishHandler = handleAddToWish({
+    onAddToWish: addToWish,
+    toastRef: toastBL,
+  });
 
   const handleSort = (field) => {
     if (sortBy === field) {
@@ -36,6 +44,7 @@ export default function Products() {
 
   return (
     <div className="container pt-5 pb-5">
+      <Toast ref={toastBL} position="bottom-left" />
       <div className="d-flex justify-content-center align-items-center mb-3">
         <Searchbar search={search} setSearch={setSearch} />
       </div>
@@ -69,7 +78,7 @@ export default function Products() {
               title={p.title}
               image={p.image}
               category={p.category}
-              onAddToWish={addToWish}
+              onAddToWish={(e) => addToWishHandler(e, p)}
             />
           </div>
         ))}

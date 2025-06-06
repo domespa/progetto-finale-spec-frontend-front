@@ -1,14 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-//Funzione di debounce generica
-function debounce(callback, delay) {
-  let timer;
-  return (value) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      callback(value);
-    }, delay);
-  };
-}
+import { debounce } from "../utils/debounce";
 
 export default function Searchbar({ search, setSearch }) {
   const inputRef = useRef();

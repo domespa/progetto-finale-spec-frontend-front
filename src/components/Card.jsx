@@ -1,19 +1,11 @@
 import { Link } from "react-router-dom";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
+import { handleAddToWish } from "../utils/handleAddToWish";
 
 export default function Card({ id, title, image, category, onAddToWish }) {
   const toastBL = useRef(null);
 
-  const handleAddToWish = (e) => {
-    e.preventDefault();
-    onAddToWish({ id, title, image, category });
-    toastBL.current.show({
-      severity: "success",
-      detail: `Lista preferiti aggiornata`,
-      life: 3000,
-    });
-  };
   return (
     <div
       className="card d-flex flex-column justify-content-between"
@@ -44,7 +36,7 @@ export default function Card({ id, title, image, category, onAddToWish }) {
           label="Success"
           severity="success"
           className="btn btn-primary"
-          onClick={handleAddToWish}
+          onClick={onAddToWish}
         >
           Aggiungi ai preferiti
         </button>

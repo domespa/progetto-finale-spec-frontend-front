@@ -81,8 +81,10 @@ main {
 }
 .search-compare {
   padding-top: 10px;
-  text-align: center;
+
   position: relative;
+
+  display: flex;
 }
 .comp-container {
   padding-top: 10px;
@@ -90,9 +92,6 @@ main {
   color: white;
   /* margin: auto; */
 }
-/* .comp-container button {
-  padding: 0;
-} */
 
 .comp-card {
   border: 1px solid white;
@@ -101,6 +100,7 @@ main {
   border-radius: 5px;
   padding: 6px;
   margin: 30px auto;
+  max-width: 350px;
 }
 
 .comp-grid img {
@@ -108,14 +108,17 @@ main {
   margin-bottom: 20px;
 }
 .comp-grid {
-  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .searchlist {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
+  width: 40%;
   z-index: 1000;
   background: white;
   border: 1px solid #ccc;
@@ -125,6 +128,7 @@ main {
   padding: 0;
   margin: 0;
   color: black;
+  margin-top: 6px;
 }
 
 .searchlist-item {
