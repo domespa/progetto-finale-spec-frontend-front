@@ -16,11 +16,12 @@ export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const toastBL = useRef(null);
-  const { addToWish } = useContext(GlobalContext);
+  const { addToWish, wishlist } = useContext(GlobalContext);
 
   const addToWishHandler = handleAddToWish({
     onAddToWish: addToWish,
     toastRef: toastBL,
+    wishlist,
   });
 
   useEffect(() => {

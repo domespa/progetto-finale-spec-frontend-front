@@ -1,15 +1,24 @@
-export function handleAddToWish({ onAddToWish, toastRef }) {
+export function handleAddToWish({ onAddToWish, toastRef, wishlist }) {
   return (e, product) => {
-    e.preventDefault();
     try {
+      const alreadyInWishlist = wishlist.some((item) => item.id === product.id);
+
+      if (alreadyInWishlist) {
+        toastRef.current.show({
+          severity: "warn",
+          detail: `${product.title} è già nei preferiti.`,
+          life: 3000,
+        });
+        return;
+      }
+
       onAddToWish(product);
-      console.log("Aggiungo ai preferiti:", product.title);
+
       toastRef.current.show({
         severity: "success",
         detail: `${product.title} aggiunto ai preferiti!`,
         life: 3000,
       });
-      console.log("Aggiunta prodotto andata a buon fine");
     } catch (error) {
       console.error(`Errore`, error);
     }

@@ -48,9 +48,9 @@ main {
 
 .hero-content {
   background-color: white;
-  height: 30vh;
-  width: 150vh;
-  margin: auto;
+  height: auto;
+  width: auto;
+  margin: 50px;
   padding: 30px;
   border-radius: 25px;
 }
@@ -165,10 +165,13 @@ main {
 
 .pref-container li {
   margin-bottom: 6px;
-  list-style: none;
 }
 .pref-container.open {
   transform: translateX(0);
+}
+
+.pref-container button {
+  padding: 2px 4px;
 }
 
 /*-------------

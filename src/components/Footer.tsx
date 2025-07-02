@@ -15,7 +15,7 @@ export default function Footer() {
               id=""
               placeholder="Inserisci la tua email"
             />
-            <button className="d-flex">Invia</button>
+            <button className="d-flex btn btn-light p-1">Invia</button>
           </div>
         </div>
         {/* <div className="reserved">

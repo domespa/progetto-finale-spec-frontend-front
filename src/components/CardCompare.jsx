@@ -4,6 +4,7 @@ const { VITE_API_URL } = import.meta.env;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { debounce } from "../utils/debounce";
+import Searchbar from "./Searchbar";
 
 export default function CardCompare() {
   const { products, addToWish } = useContext(GlobalContext);
@@ -38,12 +39,7 @@ export default function CardCompare() {
   return (
     <div className="comp-container">
       <div className="search-compare">
-        <input
-          type="text"
-          placeholder="Cerca prodotto..."
-          defaultValue={search}
-          onChange={(e) => handleSearch(e.target.value)}
-        />
+        <Searchbar search={search} setSearch={setSearch} />
 
         {search && (
           <ul className="searchlist">

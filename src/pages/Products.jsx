@@ -6,7 +6,7 @@ import { handleAddToWish } from "../utils/handleAddToWish.js";
 import { Toast } from "primereact/toast";
 
 export default function Products() {
-  const { products, addToWish } = useContext(GlobalContext);
+  const { products, addToWish, wishlist } = useContext(GlobalContext);
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState(1);
@@ -15,6 +15,7 @@ export default function Products() {
   const addToWishHandler = handleAddToWish({
     onAddToWish: addToWish,
     toastRef: toastBL,
+    wishlist,
   });
 
   const handleSort = (field) => {
@@ -31,6 +32,8 @@ export default function Products() {
       let comparison;
       if (sortBy === "title") {
         comparison = a.title.localeCompare(b.title);
+      } else if (sortBy === "category") {
+        comparison = a.category.localeCompare(b.category);
       }
       return comparison * sortOrder;
     });
@@ -51,21 +54,21 @@ export default function Products() {
       <div className="row">
         <h2 className="text-center text-white">Prodotti disponibili</h2>
         <div className="order-container">
-          <button
-            onClick={() => {
-              setSortBy("title");
-              setSortOrder(1);
-            }}
-          >
-            Az ⬆️
+          <button onClick={() => handleSort("title")}>
+            Titolo
+            {sortBy === "title"
+              ? sortOrder === 1
+                ? " - Az ⬆️"
+                : " - Za ⬇️"
+              : ""}
           </button>
-          <button
-            onClick={() => {
-              setSortBy("title");
-              setSortOrder(-1);
-            }}
-          >
-            Za ⬇️
+          <button onClick={() => handleSort("category")}>
+            Categoria
+            {sortBy === "category"
+              ? sortOrder === 1
+                ? " - Az ⬆️"
+                : " - Za ⬇️"
+              : ""}
           </button>
         </div>
         {filteredProducts.map((p) => (
