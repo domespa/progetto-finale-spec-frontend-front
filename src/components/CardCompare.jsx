@@ -36,6 +36,42 @@ export default function CardCompare() {
     setProdToCompare((prev) => prev.filter((p) => p.id !== id));
   };
 
+  // FUNZIONE PER TROVARE PRODOTTO MIGLIORE
+  const getBestValue = (field, type = "higher") => {
+    if (prodToCompare.length < 2) return null;
+
+    const values = prodToCompare
+      .map((p) => parseFloat(p[field]))
+      .filter((v) => !isNaN(v) && v > 0);
+
+    if (values.length === 0) return null;
+
+    return type === "higher" ? Math.max(...values) : Math.min(...values);
+  };
+
+  //FUNZIONE PER CONTROLLARE SE IL VALORE è MEGLIORE
+  const isBest = (product, field, type = "higher") => {
+    if (prodToCompare.length < 2) return false;
+
+    const value = parseFloat(product[field]);
+    if (isNaN(value) || value <= 0) return false;
+
+    const bestValue = getBestValue(field, type);
+    return value === bestValue;
+  };
+
+  // STILE PER LE CELLE MIGLIORI
+  const getBestStyle = (product, field, type = "higher") => {
+    return isBest(product, field, type)
+      ? {
+          backgroundColor: "#d4edda",
+          color: "#155724",
+          fontWeight: "bold",
+          border: "2px solid #28a745",
+        }
+      : {};
+  };
+
   return (
     <div className="comp-container">
       <div className="search-compare">
@@ -91,33 +127,51 @@ export default function CardCompare() {
                       </li>
                     )}
                     {p.speedCpu && (
-                      <li className="list-group-item">
+                      <li
+                        className="list-group-item"
+                        style={getBestStyle(p, "speedCpu", "higher")}
+                      >
                         <strong>CPU:</strong> {p.cpu} ({p.speedCpu} GHz)
                       </li>
                     )}
                     {p.ram && (
-                      <li className="list-group-item">
+                      <li
+                        className="list-group-item"
+                        style={getBestStyle(p, "ram", "higher")}
+                      >
                         <strong>RAM:</strong> {p.ram} GB
                       </li>
                     )}
                     {p.storage && (
-                      <li className="list-group-item">
+                      <li
+                        className="list-group-item"
+                        style={getBestStyle(p, "storage", "higher")}
+                      >
                         <strong>Hard Drive:</strong> {p.hardDriveType} -{" "}
                         {p.storage} GB
                       </li>
                     )}
                     {p.gpuRam && (
-                      <li className="list-group-item">
+                      <li
+                        className="list-group-item"
+                        style={getBestStyle(p, "gpuRam", "higher")}
+                      >
                         <strong>GPU Ram:</strong> {p.gpuRam} GB
                       </li>
                     )}
                     {p.screenInch && (
-                      <li className="list-group-item">
+                      <li
+                        className="list-group-item"
+                        style={getBestStyle(p, "screenInch", "higher")}
+                      >
                         <strong>Schermo:</strong> {p.screenInch}"
                       </li>
                     )}
                     {p.refreshRate && (
-                      <li className="list-group-item">
+                      <li
+                        className="list-group-item"
+                        style={getBestStyle(p, "refreshRate", "higher")}
+                      >
                         <strong>Frequenza d'aggiornamento:</strong>{" "}
                         {p.refreshRate} Hz
                       </li>
@@ -128,7 +182,10 @@ export default function CardCompare() {
                       </li>
                     )}
                     {p.price && (
-                      <li className="list-group-item">
+                      <li
+                        className="list-group-item"
+                        style={getBestStyle(p, "price", "lower")}
+                      >
                         <strong>Prezzo:</strong> € {p.price}
                       </li>
                     )}
